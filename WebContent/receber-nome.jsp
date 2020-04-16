@@ -12,6 +12,8 @@
 	out.print(nome); 
 	 --%>
 	<%= "Nome recebido: " + request.getParameter("nome") %>
+	<br/>
+	<% response.sendRedirect("https://www.uol.com.br/"); %>
 
 </body>
 </html>
