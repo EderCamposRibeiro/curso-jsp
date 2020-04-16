@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <%@ taglib prefix="myprefix" uri="WEB-INF/testetag.tld" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,15 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Bem vindo ao curso de JSP</h1>
-
-	<%= "Seu sucesso garantido!!!"%>
-	<form action="receber-nome.jsp">
-		<input type="text" id="nome" name="nome">
-		<input type="submit" value="Enviar">
-	
-	</form>
-	<%session.setAttribute("curso", "curso de JSP"); %>
+	<%@ include file="pagina-include.jsp" %>
+	<myprefix:minhatag/>
 
 </body>
 </html>
