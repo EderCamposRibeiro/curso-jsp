@@ -15,5 +15,15 @@
 		<input type="submit" value="Enviar">
 	
 	</form>
+	
+	<%! int cont = 2;
+		public int retorna(int n) {
+			return n * 3;
+		}
+	
+	%>
+	<%= cont %>
+	<br/>
+	<%= retorna(8) %>
 </body>
 </html>

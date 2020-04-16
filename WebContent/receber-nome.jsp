@@ -12,5 +12,6 @@
 	out.print(nome); 
 	 --%>
 	<%= "Nome recebido: " + request.getParameter("nome") %>
+
 </body>
 </html>
