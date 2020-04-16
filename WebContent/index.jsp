@@ -8,24 +8,14 @@
 </head>
 <body>
 	<h1>Bem vindo ao curso de JSP</h1>
-<%-- Passando Parâmetros	<% out.print("Seu sucesso garantido!!!");%> --%>
+
 	<%= "Seu sucesso garantido!!!"%>
 	<form action="receber-nome.jsp">
 		<input type="text" id="nome" name="nome">
 		<input type="submit" value="Enviar">
 	
 	</form>
-	
-	<%! int cont = 2;
-		public int retorna(int n) {
-			return n * 3;
-		}
-	
-	%>
-	<%= cont %>
-	<br/>
-	<%= retorna(8) %>
-	<br/>
-	<%= application.getInitParameter("estado")%>
+	<%session.setAttribute("curso", "curso de JSP"); %>
+
 </body>
 </html>
