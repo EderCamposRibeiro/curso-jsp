@@ -8,9 +8,8 @@
 </head>
 <body>
 
-	<h1>Receber Nome</h1>
-	
-	<%= request.getParameter("paramforward") %>
+	<h2>Rodape</h2>
+
 
 </body>
 </html>

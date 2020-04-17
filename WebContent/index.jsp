@@ -10,9 +10,9 @@
 </head>
 <body>
 	<h1>Index</h1>
-	<jsp:forward page="receber-nome.jsp">
-		<jsp:param value="curso de jsp site java avancado.com" name="paramforward"/>
-	</jsp:forward>
 
+	<jsp:include page="cabecalho.jsp"></jsp:include>
+		<h3>Conteudo da Pagina! Conteudo da Pagina! Conteudo da Pagina! Conteudo da Pagina! Conteudo da Pagina! Conteudo da Pagina!</h3>
+	<jsp:include page="rodape.jsp"></jsp:include>
 </body>
 </html>
