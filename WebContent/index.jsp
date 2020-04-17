@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
     <%@ taglib prefix="myprefix" uri="WEB-INF/testetag.tld" %>
+    <jsp:useBean id="calcula" class="beans.BeanCursoJsp" type="beans.BeanCursoJsp" scope="page"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +11,8 @@
 </head>
 <body>
 	<h1>Index</h1>
+	
+	<%= calcula.calcula(50) %>
 
-	<jsp:include page="cabecalho.jsp"></jsp:include>
-		<h3>Conteudo da Pagina! Conteudo da Pagina! Conteudo da Pagina! Conteudo da Pagina! Conteudo da Pagina! Conteudo da Pagina!</h3>
-	<jsp:include page="rodape.jsp"></jsp:include>
 </body>
 </html>
