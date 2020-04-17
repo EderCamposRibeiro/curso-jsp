@@ -8,9 +8,9 @@
 </head>
 <body>
 
-	<%@ page isErrorPage="true" %>
+	<h1>Receber Nome</h1>
 	
-	<%= exception %>
+	<%= request.getParameter("paramforward") %>
 
 </body>
 </html>
