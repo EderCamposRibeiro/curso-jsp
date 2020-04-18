@@ -8,7 +8,7 @@
 </head>
 	<body>
 		<jsp:setProperty property="*" name="calcula"/>
-		<h3>Cabecalho!</h3>
-			${sessionScope.user }
+		<h3>Seja bem vindo ao sistema em JSP!</h3>
+
 	</body>
 </html>

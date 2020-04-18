@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h2>Rodape</h2>
+	<h2>Acesso negado ao sistema para seu usuário!</h2>
 
 
 </body>
