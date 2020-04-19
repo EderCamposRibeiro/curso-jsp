@@ -16,19 +16,6 @@
 
 	<c:set var="numero" value="${100/2}" />
 
-	<c:if test="${numero >= 50}">
-		<c:redirect url="https://www.google.com.br" />
-	</c:if>
-
-	<c:if test="${numero < 50}">
-		<c:redirect url="https://www.javaavancado.com" />
-	</c:if>
-
-	<p />
-	<p />
-	<p />
-	<p />
-
 	<form action="LoginServlet">
 		Login: <input type="text" id="login" name="login"> <br />
 		Senha: <input type="text" id="senha" name="senha"> <br /> <input
