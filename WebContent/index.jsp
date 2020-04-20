@@ -18,7 +18,7 @@
 
 	<form action="LoginServlet">
 		Login: <input type="text" id="login" name="login"> <br />
-		Senha: <input type="text" id="senha" name="senha"> <br /> <input
+		Senha: <input type="password" id="senha" name="senha"> <br /> <input
 			type="submit" value="Logar">
 	</form>
 </body>
