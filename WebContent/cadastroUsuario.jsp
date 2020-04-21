@@ -43,6 +43,7 @@
 
 	<div class="container">
 		<table class="responsive-table">
+		<caption>Usuários cadastrados</caption>
 			<thead>
 				<tr>
 					<th scope="col">Id Usuário</th>
@@ -60,9 +61,11 @@
 					</td>
 					<td data-title="Senha"><c:out value="${user.senha}"></c:out></td>
 
-					<td data-title="Excluir"><a href="salvarUsuario?acao=delete&user=${user.login}">Excluir</a>
+					<td data-title="Excluir"><a href="salvarUsuario?acao=delete&user=${user.login}">
+						<img src="resources/img/excluir.png" width="20px" height="20px" title="Excluir" alt="Excluir"> </a>
 					</td>
-					<td data-title="Editar"><a href="salvarUsuario?acao=editar&user=${user.login}">Editar</a>
+					<td data-title="Editar"><a href="salvarUsuario?acao=editar&user=${user.login}">
+						<img src="resources/img/editar.png" width="20px" height="20px" title="Editar" alt="Editar"></a>
 					</td>
 				</tr>
 			</c:forEach>
