@@ -2,6 +2,7 @@ package beans;
 
 public class BeanCursoJsp {
 	
+	private Long id;
 	private String login;
 	private String senha;
 	
@@ -16,6 +17,12 @@ public class BeanCursoJsp {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

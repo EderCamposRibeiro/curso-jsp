@@ -70,6 +70,21 @@ public class DaoUsuario {
 			}
 		}
 	}
+
+	public BeanCursoJsp consultar(String login) throws Exception{
+		String sql = "select * from usuario where login = '" + login + "'";
+		
+		PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet resultSet = statement.executeQuery();
+		if (resultSet.next()) {
+			BeanCursoJsp beanCursoJsp = new BeanCursoJsp();
+			beanCursoJsp.setLogin(resultSet.getString("login"));
+			beanCursoJsp.setSenha(resultSet.getString("senha"));
+			return beanCursoJsp;
+		}
+		
+		return null;
+	}
 	
 	
 }
