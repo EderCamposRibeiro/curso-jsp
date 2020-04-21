@@ -13,8 +13,8 @@
 	<form action="salvarUsuario" method="post">
 		<table>
 			<tr>
-				<td>Id:</td>
-				<td><input type="text" id="id" name="id"
+				<td>Codigo:</td>
+				<td><input type="text" readonly="readonly" id="id" name="id"
 					value="${user.id}"></td>
 			</tr>
 			<tr>
@@ -33,6 +33,8 @@
 	<table>
 		<c:forEach items="${usuario}" var="user">
 			<tr>
+				<td style="width: 150px"><c:out value="${user.id}"></c:out>
+				</td>
 				<td style="width: 150px"><c:out value="${user.login}"></c:out>
 				</td>
 				<td><c:out value="${user.senha}"></c:out></td>
