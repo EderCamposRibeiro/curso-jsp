@@ -14,8 +14,6 @@
 </head>
 <body>
 
-	<c:set var="numero" value="${100/2}" />
-
 	<form action="LoginServlet">
 		Login: <input type="text" id="login" name="login"> <br />
 		Senha: <input type="password" id="senha" name="senha"> <br /> <input
