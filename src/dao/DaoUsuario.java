@@ -74,8 +74,8 @@ public class DaoUsuario {
 		}
 	}
 
-	public BeanCursoJsp consultar(String login) throws Exception{
-		String sql = "select * from usuario where login = '" + login + "'";
+	public BeanCursoJsp consultar(String id) throws Exception{
+		String sql = "select * from usuario where id = '" + id + "'";
 		
 		PreparedStatement statement = connection.prepareStatement(sql);
 		ResultSet resultSet = statement.executeQuery();

@@ -10,7 +10,7 @@
 		<jsp:setProperty property="*" name="calcula"/>
 		<h3>Seja bem vindo ao sistema em JSP!</h3>
 		
-		<a href="cadastroUsuario.jsp">Cadastro de usuários</a>
+		<a href="salvarUsuario?acao=listartodos">Cadastro de usuários</a>
 
 	</body>
 </html>

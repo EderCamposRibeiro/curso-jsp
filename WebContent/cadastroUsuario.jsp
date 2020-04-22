@@ -12,7 +12,7 @@
 <body>
 	<h1 align="center">Cadastro de usuário</h1>
 
-	<form action="salvarUsuario" method="post">
+	<form action="salvarUsuario" method="post" id="formUser">
 		<ul class="form-style-1">
 			<li>
 				<table>
@@ -38,7 +38,7 @@
 					</tr>					
 					<tr>
 						<td></td>
-						<td><input type="submit" value="Salvar"></td>
+						<td><input type="submit" value="Salvar"> <input type="submit" value="Cancelar" onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'"></td>
 					</tr>
 				</table>
 
@@ -71,7 +71,7 @@
 					<td data-title="Excluir"><a href="salvarUsuario?acao=delete&user=${user.id}">
 						<img src="resources/img/excluir.png" width="20px" height="20px" title="Excluir" alt="Excluir"> </a>
 					</td>
-					<td data-title="Editar"><a href="salvarUsuario?acao=editar&user=${user.login}">
+					<td data-title="Editar"><a href="salvarUsuario?acao=editar&user=${user.id}">
 						<img src="resources/img/editar.png" width="20px" height="20px" title="Editar" alt="Editar"></a>
 					</td>
 				</tr>
