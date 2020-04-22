@@ -34,7 +34,7 @@ public class Usuario extends HttpServlet {
 			String user = request.getParameter("user");
 			
 			if (acao.equalsIgnoreCase("delete")) {
-				daoUsuario.delete(user);
+				daoUsuario.delete(user.toString());
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuario", daoUsuario.listar());
 				view.forward(request, response);
@@ -58,11 +58,13 @@ public class Usuario extends HttpServlet {
 		String id = request.getParameter("id");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
+		String nome = request.getParameter("nome");
 
 		BeanCursoJsp usuario = new BeanCursoJsp();
 		usuario.setId(!id.isEmpty()? Long.parseLong(id) : 0);
 		usuario.setLogin(login);
 		usuario.setSenha(senha);
+		usuario.setNome(nome);
 		
 		if (id == null || id.isEmpty()) {
 			daoUsuario.salvar(usuario);

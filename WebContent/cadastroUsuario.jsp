@@ -32,6 +32,11 @@
 							value="${user.senha}"></td>
 					</tr>
 					<tr>
+						<td>Nome:</td>
+						<td><input type="text" id="nome" name="nome"
+							value="${user.nome}"></td>
+					</tr>					
+					<tr>
 						<td></td>
 						<td><input type="submit" value="Salvar"></td>
 					</tr>
@@ -48,9 +53,10 @@
 				<tr>
 					<th scope="col">Id Usuário</th>
 					<th scope="col">Login</th>
-					<th scope="col">Senha</th>
-					<th scope="col"></th>
-					<th scope="col"></th>
+					<!--  <th scope="col">Senha</th>-->
+					<th scope="col">Nome</th>
+					<th scope="col">Excluir</th>
+					<th scope="col">Editar</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -59,9 +65,10 @@
 					<th scope="row"><c:out value="${user.id}"></c:out></th>
 					<td data-title="Login"><c:out value="${user.login}"></c:out>
 					</td>
-					<td data-title="Senha"><c:out value="${user.senha}"></c:out></td>
+					<!--  <td data-title="Senha"><c:out value="${user.senha}"></c:out></td>-->
+					<td data-title="Nome"><c:out value="${user.nome}"></c:out></td>
 
-					<td data-title="Excluir"><a href="salvarUsuario?acao=delete&user=${user.login}">
+					<td data-title="Excluir"><a href="salvarUsuario?acao=delete&user=${user.id}">
 						<img src="resources/img/excluir.png" width="20px" height="20px" title="Excluir" alt="Excluir"> </a>
 					</td>
 					<td data-title="Editar"><a href="salvarUsuario?acao=editar&user=${user.login}">
