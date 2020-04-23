@@ -28,11 +28,11 @@ public class Usuario extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		try {
 			String acao = request.getParameter("acao");
 			String user = request.getParameter("user");
-			
+
 			if (acao.equalsIgnoreCase("delete")) {
 				daoUsuario.delete(user.toString());
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
@@ -41,7 +41,7 @@ public class Usuario extends HttpServlet {
 			} else if (acao.equalsIgnoreCase("listartodos")) {
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuario", daoUsuario.listar());
-				view.forward(request, response);			
+				view.forward(request, response);
 			} else if (acao.equalsIgnoreCase("editar")) {
 				BeanCursoJsp beanCursoJsp = daoUsuario.consultar(user);
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
@@ -59,9 +59,9 @@ public class Usuario extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String acao = request.getParameter("acao");
-		
+
 		if (acao != null && acao.equalsIgnoreCase("acao")) {
 			try {
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
@@ -85,10 +85,16 @@ public class Usuario extends HttpServlet {
 			usuario.setSenha(senha);
 			usuario.setNome(nome);
 			try {
-				if (id == null || id.isEmpty() && daoUsuario.validarLogin(login)) {
-					daoUsuario.salvar(usuario);
-				} else if (id != null || !id.isEmpty()) {
-					daoUsuario.atualizar(usuario);
+				if (usuarioExistente(id) && !daoUsuario.validarLogin(login)) {
+					avisoJaCadastrado(request);
+				} else {
+
+					if (usuarioExistente(id) && daoUsuario.validarLogin(login)) {
+						daoUsuario.salvar(usuario);
+					} else if (id != null || !id.isEmpty() && !daoUsuario.validarLogin(login)) {
+						avisoJaCadastrado(request);
+						daoUsuario.atualizar(usuario);
+					} 
 				}
 			} catch (Exception e1) {
 				e1.printStackTrace();
@@ -99,8 +105,19 @@ public class Usuario extends HttpServlet {
 				view.forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-			} 
+			}
 		}
+	}
+
+	private void avisoJaCadastrado(HttpServletRequest request) {
+		request.setAttribute("msg", "Usuário já existe com o mesmo login!");
+	}
+
+	private boolean usuarioExistente(String id) {
+		if (id == null || id.isEmpty()) {
+			return false;
+		}
+		return true;
 	}
 
 }

@@ -12,6 +12,7 @@
 <body>
 	<h1 align="center">Cadastro de usuário</h1>
 
+
 	<form action="salvarUsuario" method="post" id="formUser">
 		<ul class="form-style-1">
 			<li>
@@ -45,6 +46,8 @@
 			</li>
 		</ul>
 	</form>
+	
+	<h3 align="center" style="color: red;">${msg}</h3>
 
 	<div class="container">
 		<table class="responsive-table">
