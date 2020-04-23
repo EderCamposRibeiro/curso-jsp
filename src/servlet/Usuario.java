@@ -79,27 +79,25 @@ public class Usuario extends HttpServlet {
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");
 			String nome = request.getParameter("nome");
+			String telefone = request.getParameter("telefone");
 			BeanCursoJsp usuario = new BeanCursoJsp();
 			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			usuario.setNome(nome);
+			usuario.setTelefone(telefone);
 			try {
-				if (usuarioExistente(id) && !daoUsuario.validarLogin(login)) {
+				if (!usuarioExistente(id) && !daoUsuario.validarLogin(login)) {
 					avisoJaCadastrado(request);
-				} else {
-
-					if (usuarioExistente(id) && daoUsuario.validarLogin(login)) {
+				} 
+				if (!usuarioExistente(id) && daoUsuario.validarLogin(login)) {
 						daoUsuario.salvar(usuario);
-					} else if (id != null || !id.isEmpty() && !daoUsuario.validarLogin(login)) {
-						avisoJaCadastrado(request);
-						daoUsuario.atualizar(usuario);
-					} 
+				} else if (id != null || !id.isEmpty() && !usuarioExistente(id)) {
+					daoUsuario.atualizar(usuario);
+				} else {
+					avisoJaCadastrado(request);
 				}
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-			try {
+				
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuario", daoUsuario.listar());
 				view.forward(request, response);

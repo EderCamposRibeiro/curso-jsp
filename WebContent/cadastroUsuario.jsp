@@ -36,7 +36,12 @@
 						<td>Nome:</td>
 						<td><input type="text" id="nome" name="nome"
 							value="${user.nome}"></td>
-					</tr>					
+					</tr>		
+					<tr>
+						<td>Fone:</td>
+						<td><input type="text" id="telefone" name="telefone"
+							value="${user.telefone}"></td>
+					</tr>									
 					<tr>
 						<td></td>
 						<td><input type="submit" value="Salvar"> <input type="submit" value="Cancelar" onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'"></td>
@@ -56,10 +61,11 @@
 				<tr>
 					<th scope="col">Id Usuário</th>
 					<th scope="col">Login</th>
-					<!--  <th scope="col">Senha</th>-->
 					<th scope="col">Nome</th>
+					<th scope="col">Fone</th>
 					<th scope="col">Excluir</th>
 					<th scope="col">Editar</th>
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -70,7 +76,7 @@
 					</td>
 					<!--  <td data-title="Senha"><c:out value="${user.senha}"></c:out></td>-->
 					<td data-title="Nome"><c:out value="${user.nome}"></c:out></td>
-
+					<td data-title="Telefone"><c:out value="${user.telefone}"></c:out></td>			
 					<td data-title="Excluir"><a href="salvarUsuario?acao=delete&user=${user.id}">
 						<img src="resources/img/excluir.png" width="20px" height="20px" title="Excluir" alt="Excluir"> </a>
 					</td>
