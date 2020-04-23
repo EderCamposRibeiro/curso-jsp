@@ -84,10 +84,14 @@ public class Usuario extends HttpServlet {
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			usuario.setNome(nome);
-			if (id == null || id.isEmpty()) {
-				daoUsuario.salvar(usuario);
-			} else {
-				daoUsuario.atualizar(usuario);
+			try {
+				if (id == null || id.isEmpty() && daoUsuario.validarLogin(login)) {
+					daoUsuario.salvar(usuario);
+				} else if (id != null || !id.isEmpty()) {
+					daoUsuario.atualizar(usuario);
+				}
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
 			try {
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
