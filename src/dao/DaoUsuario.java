@@ -94,17 +94,43 @@ public class DaoUsuario {
 		return null;
 	}
 	
+	//É possível usar esse login??????
 	public boolean validarLogin(String login) throws Exception{
 		String sql = "select count(1) as qtd from usuario where login = '" + login + "'";
 		
 		PreparedStatement statement = connection.prepareStatement(sql);
 		ResultSet resultSet = statement.executeQuery();
 		if (resultSet.next()) {
-			return resultSet.getInt("qtd") <= 0;/*Retorna True*/
+			return resultSet.getInt("qtd") <= 0;/*Retorna True - sim é possivel usar este login*/
 		}
 		
-		return false;
+		return false; //Não é possível usar esse login!
 	}
+	
+	public boolean validarLoginUpdate(String login, String id) throws Exception{
+		String sql = "select count(1) as qtd from usuario where login = '" + login + "' and id <> " + id ;
+		
+		PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet resultSet = statement.executeQuery();
+		if (resultSet.next()) {
+			return resultSet.getInt("qtd") <= 0;/*Retorna True - sim é possivel usar este login*/
+		}
+		
+		return false; //Não é possível usar esse login!
+	}
+	
+
+	public boolean senhaDiferente(String senha, String id) throws SQLException {
+		String sql = "select count(1) as qtd from usuario where senha = '" + senha + "' and id <> " + id ;
+		
+		PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet resultSet = statement.executeQuery();
+		if (resultSet.next()) {
+			return resultSet.getInt("qtd") <= 0;/*Retorna True - A senha é diferente*/
+		}
+		
+		return false; //Senha repetida!
+	}	
 
 	public void atualizar(BeanCursoJsp usuario) {
 		try {
@@ -127,6 +153,7 @@ public class DaoUsuario {
 		}
 		
 	}
+
 	
 	
 }

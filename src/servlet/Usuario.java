@@ -86,21 +86,34 @@ public class Usuario extends HttpServlet {
 			usuario.setSenha(senha);
 			usuario.setNome(nome);
 			usuario.setTelefone(telefone);
+
 			try {
-				if (!usuarioExistente(id) && !daoUsuario.validarLogin(login)) {
-					avisoJaCadastrado(request);
-				} 
-				if (!usuarioExistente(id) && daoUsuario.validarLogin(login)) {
+				if (usuarioVazio(id)) { // Aqui se for verdadeiro significa que é uma inlcusão!
+					if (daoUsuario.validarLogin(login)) { // Posso usar esse Login (Nome de usuário)???????
 						daoUsuario.salvar(usuario);
-				} else if (id != null || !id.isEmpty() && !usuarioExistente(id)) {
-					daoUsuario.atualizar(usuario);
-				} else {
-					avisoJaCadastrado(request);
+					} else {
+						avisoJaCadastrado(request);
+					}
+				} else { // Aqui significa que é uma alteração
+							// se tem id preenchido e pode usar esse login
+					if ((id != null || !id.isEmpty()) && daoUsuario.validarLoginUpdate(login, id)){ 
+						if (daoUsuario.senhaDiferente(senha, id)) { //Se a senha for diferente pode alterar
+							daoUsuario.atualizar(usuario);
+						} else {
+							request.setAttribute("msg", "A senha é a mesma da atual!");
+						}
+						
+					} else {
+						avisoJaCadastrado(request);
+					}
 				}
-				
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuario", daoUsuario.listar());
 				view.forward(request, response);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -111,11 +124,11 @@ public class Usuario extends HttpServlet {
 		request.setAttribute("msg", "Usuário já existe com o mesmo login!");
 	}
 
-	private boolean usuarioExistente(String id) {
-		if (id == null || id.isEmpty()) {
-			return false;
+	private boolean usuarioVazio(String id) {
+		if (id == null || id.isEmpty()) { // Variável usuario esta vazia?????
+			return true;
 		}
-		return true;
+		return false; // Usuario "id" está preenchido
 	}
 
 }
