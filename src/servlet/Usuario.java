@@ -23,7 +23,6 @@ public class Usuario extends HttpServlet {
 
 	public Usuario() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,101 +33,102 @@ public class Usuario extends HttpServlet {
 			String user = request.getParameter("user");
 
 			if (acao.equalsIgnoreCase("delete")) {
-				daoUsuario.delete(user.toString());
+				daoUsuario.delete(user);
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
-				request.setAttribute("usuario", daoUsuario.listar());
-				view.forward(request, response);
-			} else if (acao.equalsIgnoreCase("listartodos")) {
-				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
-				request.setAttribute("usuario", daoUsuario.listar());
+				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
 			} else if (acao.equalsIgnoreCase("editar")) {
+				
 				BeanCursoJsp beanCursoJsp = daoUsuario.consultar(user);
+				
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("user", beanCursoJsp);
+				view.forward(request, response);				
+			} else if (acao.equalsIgnoreCase("listartodos")) {
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
+
 			}
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
 
-		if (acao != null && acao.equalsIgnoreCase("acao")) {
+		if (acao != null && acao.equalsIgnoreCase("reset")) {
 			try {
-				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
-				request.setAttribute("usuario", daoUsuario.listar());
+				RequestDispatcher view = request
+						.getRequestDispatcher("/cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
+
 			String id = request.getParameter("id");
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");
 			String nome = request.getParameter("nome");
 			String telefone = request.getParameter("telefone");
+
 			BeanCursoJsp usuario = new BeanCursoJsp();
-			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
+			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : null);
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			usuario.setNome(nome);
 			usuario.setTelefone(telefone);
-
 			try {
-				if (usuarioVazio(id)) { // Aqui se for verdadeiro significa que é uma inlcusão!
-					if (daoUsuario.validarLogin(login)) { // Posso usar esse Login (Nome de usuário)???????
-						daoUsuario.salvar(usuario);
-					} else {
-						avisoJaCadastrado(request);
-					}
-				} else { // Aqui significa que é uma alteração
-							// se tem id preenchido e pode usar esse login
-					if ((id != null || !id.isEmpty()) && daoUsuario.validarLoginUpdate(login, id)){ 
-						if (daoUsuario.senhaDiferente(senha, id)) { //Se a senha for diferente pode alterar
-							daoUsuario.atualizar(usuario);
-						} else {
-							request.setAttribute("msg", "A senha é a mesma da atual!");
-						}
-						
-					} else {
-						avisoJaCadastrado(request);
-					}
+
+				String msg = null;
+				boolean podeInserir = true;
+
+				if (id == null || id.isEmpty()
+						&& !daoUsuario.validarLogin(login)) {//QUANDO DOR USUÁRIO NOVO
+					msg = "Usuário já existe com o mesmo login!";
+					podeInserir = false;
+
+				} else if (id == null || id.isEmpty()
+						&& !daoUsuario.validarSenha(senha)) {// QUANDO FOR USUÁRIO NOVO
+					msg = "\n A senha já existe para outro usuário!";
+					podeInserir = false;
 				}
-				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
-				request.setAttribute("usuario", daoUsuario.listar());
+
+				if (msg != null) {
+					request.setAttribute("msg", msg);
+				}
+
+				if (id == null || id.isEmpty()
+						&& daoUsuario.validarLogin(login) && podeInserir) {
+
+					daoUsuario.salvar(usuario);
+
+				} else if (id != null && !id.isEmpty() && podeInserir) {
+					daoUsuario.atualizar(usuario);
+				}
+				
+				if (!podeInserir) {
+					request.setAttribute("user", usuario);
+				}
+
+				RequestDispatcher view = request
+						.getRequestDispatcher("/cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-	}
 
-	private void avisoJaCadastrado(HttpServletRequest request) {
-		request.setAttribute("msg", "Usuário já existe com o mesmo login!");
-	}
-
-	private boolean usuarioVazio(String id) {
-		if (id == null || id.isEmpty()) { // Variável usuario esta vazia?????
-			return true;
 		}
-		return false; // Usuario "id" está preenchido
+
 	}
 
 }
+

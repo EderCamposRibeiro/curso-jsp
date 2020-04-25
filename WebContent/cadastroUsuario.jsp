@@ -69,7 +69,7 @@
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${usuario}" var="user">
+			<c:forEach items="${usuarios}" var="user">
 				<tr>
 					<th scope="row"><c:out value="${user.id}"></c:out></th>
 					<td data-title="Login"><c:out value="${user.login}"></c:out>
