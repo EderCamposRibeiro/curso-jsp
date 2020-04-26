@@ -38,12 +38,12 @@ public class Usuario extends HttpServlet {
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
 			} else if (acao.equalsIgnoreCase("editar")) {
-				
+
 				BeanCursoJsp beanCursoJsp = daoUsuario.consultar(user);
-				
+
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("user", beanCursoJsp);
-				view.forward(request, response);				
+				view.forward(request, response);
 			} else if (acao.equalsIgnoreCase("listartodos")) {
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
@@ -55,15 +55,14 @@ public class Usuario extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
 
 		if (acao != null && acao.equalsIgnoreCase("reset")) {
 			try {
-				RequestDispatcher view = request
-						.getRequestDispatcher("/cadastroUsuario.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
 
@@ -89,36 +88,42 @@ public class Usuario extends HttpServlet {
 				String msg = null;
 				boolean podeInserir = true;
 
-				if (id == null || id.isEmpty()
-						&& !daoUsuario.validarLogin(login)) {//QUANDO DOR USUÁRIO NOVO
+				if (login == null || login.isEmpty()) {
+					msg = "O Login deve ser informado!";
+					podeInserir = false;
+				} else if (senha == null || senha.isEmpty()) {
+					msg = "A Senha deve ser informada!";
+					podeInserir = false;
+				} else if (nome == null || nome.isEmpty()) {
+					msg = "O Nome deve ser informado!";
+					podeInserir = false;
+				} else if (telefone == null || telefone.isEmpty()) {
+					msg = "O número de Telefone deve ser informado!";
+					podeInserir = false;
+				} else if (id == null || id.isEmpty() && !daoUsuario.validarLogin(login)) {// QUANDO DOR USUÁRIO NOVO
 					msg = "Usuário já existe com o mesmo login!";
 					podeInserir = false;
 
-				} else if (id == null || id.isEmpty()
-						&& !daoUsuario.validarSenha(senha)) {// QUANDO FOR USUÁRIO NOVO
+				} else if (id == null || id.isEmpty() && !daoUsuario.validarSenha(senha)) {// QUANDO FOR USUÁRIO NOVO
 					msg = "\n A senha já existe para outro usuário!";
 					podeInserir = false;
 				}
 
 				if (msg != null) {
 					request.setAttribute("msg", msg);
-				}
-
-				if (id == null || id.isEmpty()
-						&& daoUsuario.validarLogin(login) && podeInserir) {
+				} else if (id == null || id.isEmpty() && daoUsuario.validarLogin(login) && podeInserir) {
 
 					daoUsuario.salvar(usuario);
 
 				} else if (id != null && !id.isEmpty() && podeInserir) {
 					daoUsuario.atualizar(usuario);
 				}
-				
+
 				if (!podeInserir) {
 					request.setAttribute("user", usuario);
 				}
 
-				RequestDispatcher view = request
-						.getRequestDispatcher("/cadastroUsuario.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
 
@@ -131,4 +136,3 @@ public class Usuario extends HttpServlet {
 	}
 
 }
-
