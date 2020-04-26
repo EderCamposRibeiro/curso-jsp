@@ -13,7 +13,8 @@
 	<h1 align="center">Cadastro de usuário</h1>
 
 
-	<form action="salvarUsuario" method="post" id="formUser">
+	<form action="salvarUsuario" method="post" id="formUser"
+		onsubmit="return validarCampos()? true : false;">
 		<ul class="form-style-1">
 			<li>
 				<table>
@@ -36,27 +37,29 @@
 						<td>Nome:</td>
 						<td><input type="text" id="nome" name="nome"
 							value="${user.nome}"></td>
-					</tr>		
+					</tr>
 					<tr>
 						<td>Fone:</td>
 						<td><input type="text" id="telefone" name="telefone"
 							value="${user.telefone}"></td>
-					</tr>									
+					</tr>
 					<tr>
 						<td></td>
-						<td><input type="submit" value="Salvar"> <input type="submit" value="Cancelar" onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'"></td>
+						<td><input type="submit" value="Salvar"> <input
+							type="submit" value="Cancelar"
+							onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'"></td>
 					</tr>
 				</table>
 
 			</li>
 		</ul>
 	</form>
-	
+
 	<h3 align="center" style="color: red;">${msg}</h3>
 
 	<div class="container">
 		<table class="responsive-table">
-		<caption>Usuários cadastrados</caption>
+			<caption>Usuários cadastrados</caption>
 			<thead>
 				<tr>
 					<th scope="col">Id Usuário</th>
@@ -65,29 +68,50 @@
 					<th scope="col">Fone</th>
 					<th scope="col">Excluir</th>
 					<th scope="col">Editar</th>
-					
+
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${usuarios}" var="user">
-				<tr>
-					<th scope="row"><c:out value="${user.id}"></c:out></th>
-					<td data-title="Login"><c:out value="${user.login}"></c:out>
-					</td>
-					<!--  <td data-title="Senha"><c:out value="${user.senha}"></c:out></td>-->
-					<td data-title="Nome"><c:out value="${user.nome}"></c:out></td>
-					<td data-title="Telefone"><c:out value="${user.telefone}"></c:out></td>			
-					<td data-title="Excluir"><a href="salvarUsuario?acao=delete&user=${user.id}">
-						<img src="resources/img/excluir.png" width="20px" height="20px" title="Excluir" alt="Excluir"> </a>
-					</td>
-					<td data-title="Editar"><a href="salvarUsuario?acao=editar&user=${user.id}">
-						<img src="resources/img/editar.png" width="20px" height="20px" title="Editar" alt="Editar"></a>
-					</td>
-				</tr>
-			</c:forEach>
+				<c:forEach items="${usuarios}" var="user">
+					<tr>
+						<th scope="row"><c:out value="${user.id}"></c:out></th>
+						<td data-title="Login"><c:out value="${user.login}"></c:out>
+						</td>
+						<!--  <td data-title="Senha"><c:out value="${user.senha}"></c:out></td>-->
+						<td data-title="Nome"><c:out value="${user.nome}"></c:out></td>
+						<td data-title="Telefone"><c:out value="${user.telefone}"></c:out></td>
+						<td data-title="Excluir"><a
+							href="salvarUsuario?acao=delete&user=${user.id}"> <img
+								src="resources/img/excluir.png" width="20px" height="20px"
+								title="Excluir" alt="Excluir">
+						</a></td>
+						<td data-title="Editar"><a
+							href="salvarUsuario?acao=editar&user=${user.id}"> <img
+								src="resources/img/editar.png" width="20px" height="20px"
+								title="Editar" alt="Editar"></a></td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>
+	<script type="text/javascript">
+		function validarCampos() {
+			if (document.getElementById("login").value == '') {
+				alert('Informe o Login')
+				return false;
+			} else if (document.getElementById("senha").value == '') {
+				alert('Informe A Senha')
+				return false;
+			} else if (document.getElementById("nome").value == '') {
+				alert('Informe o Nome')
+				return false;
+			} else if (document.getElementById("telefone").value == '') {
+				alert('Informe o Telefone')
+				return false;
+			}
+			return true;
+		}
+	</script>
 
 </body>
 </html>
