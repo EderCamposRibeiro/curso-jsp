@@ -81,21 +81,34 @@ public class Produto extends HttpServlet {
 
 			BeanProduto produto = new BeanProduto();
 			produto.setId(!id.isEmpty() ? Long.parseLong(id) : null);
-			produto.setNome(nome);			
-			produto.setQuantidade(Double.parseDouble(quantidade));
-			produto.setValor(Double.parseDouble(valor));;
+			produto.setNome(nome);	
+			
+			if (quantidade != null && !quantidade.isEmpty()) {
+				produto.setQuantidade(Double.parseDouble(quantidade));
+			}
+			if (valor != null && !valor.isEmpty()) {
+				produto.setValor(Double.parseDouble(valor));
+			}			
+			
 			try {
 
 				String msg = null;
 				boolean podeInserir = true;
-
-				if (id == null || id.isEmpty()
+				
+				if (nome == null || nome.isEmpty()) {
+					msg = "O Nome deve ser informado!";
+					podeInserir = false;
+				} else if (quantidade == null || quantidade.isEmpty()) {
+					msg = "A Quantidade deve ser informada!";
+					podeInserir = false;
+				} else if (valor == null || valor.isEmpty()) {
+					msg = "O Valor deve ser informado!";
+					podeInserir = false;
+				} else if (id == null || id.isEmpty()
 						&& !daoProduto.validarNome(nome)) {//QUANDO FOR PRODUTO NOVO
 					msg = "Produto já existe com o mesmo nome!";
 					podeInserir = false;
-				}
-
-				if (id == null || id.isEmpty() && daoProduto.validarNome(nome) && podeInserir) {
+				} else 	if (id == null || id.isEmpty() && daoProduto.validarNome(nome) && podeInserir) {
 					daoProduto.salvar(produto);
 
 				} else if (id != null && !id.isEmpty() && podeInserir && daoProduto.validarProprioNome(nome, id)) {
@@ -103,7 +116,6 @@ public class Produto extends HttpServlet {
 				} else {
 					msg = "Produto já existe com o mesmo nome!";
 					podeInserir = false;
-
 				}
 				
 				if (msg != null) {
