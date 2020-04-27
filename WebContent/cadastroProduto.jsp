@@ -12,7 +12,8 @@
 	<h1 align="center">Cadastro de produto</h1>
 
 
-	<form action="salvarProduto" method="post" id="formUser">
+	<form action="salvarProduto" method="post" id="formUser"
+		onsubmit="return validarCampos()? true : false;">
 		<ul class="form-style-1">
 			<li>
 				<table>
@@ -80,6 +81,22 @@
 			</tbody>
 		</table>
 	</div>
-
+	<script type="text/javascript">
+		function validarCampos() {
+			if (document.getElementById("nome").value == '') {
+				alert('Informe o Nome do Produto!')
+				return false;
+			}
+			if (document.getElementById("quantidade").value == '') {
+				alert('Informe a Quantidade do Produto!')
+				return false;
+			}
+			if (document.getElementById("valor").value == '') {
+				alert('Informe o Valor do Produto!')
+				return false;
+			}
+			return true;
+		}
+	</script>
 </body>
 </html>
