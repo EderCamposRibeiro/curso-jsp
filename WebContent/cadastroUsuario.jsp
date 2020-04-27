@@ -10,6 +10,9 @@
 <!--  <link rel="stylesheet" href="resources/css/cadastroUsuario.scss">-->
 </head>
 <body>
+	<a href="acessoLiberado.jsp">Início</a>
+	<br>
+	<a href="index.jsp">Sair</a>
 	<h1 align="center">Cadastro de usuário</h1>
 
 

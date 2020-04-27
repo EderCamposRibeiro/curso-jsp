@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="resources/css/cadastro.css">
 </head>
 <body>
+	<a href="acessoLiberado.jsp">Início</a>
+	<br>
+	<a href="index.jsp">Sair</a>
+
 	<h1 align="center">Cadastro de produto</h1>
 
 
