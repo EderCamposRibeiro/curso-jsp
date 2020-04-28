@@ -28,46 +28,40 @@
 						<td>Codigo:</td>
 						<td><input type="text" readonly="readonly" id="id" name="id" value="${user.id}"
 								class="field-long"></td>
-					</tr>
-					<tr>
-						<td>Login:</td>
-						<td><input type="text" id="login" name="login" value="${user.login}"></td>
-					</tr>
-					<tr>
-						<td>Senha:</td>
-						<td><input type="password" id="senha" name="senha" value="${user.senha}"></td>
-					</tr>
-					<tr>
-						<td>Nome:</td>
-						<td><input type="text" id="nome" name="nome" value="${user.nome}"></td>
-					</tr>
-					<tr>
-						<td>Fone:</td>
-						<td><input type="text" id="telefone" name="telefone" value="${user.telefone}"></td>
-					</tr>
-					<tr>
 						<td>Cep:</td>
 						<td><input type="text" id="cep" name="cep" onblur="consultaCep();" value="${user.cep}"></td>
 					</tr>
 					<tr>
+						<td>Login:</td>
+						<td><input type="text" id="login" name="login" value="${user.login}"></td>
 						<td>Rua:</td>
-						<td><input type="text" id="rua" name="rua" value="${user.rua}"></td>
+						<td><input type="text" id="rua" name="rua" value="${user.rua}"></td>						
 					</tr>
 					<tr>
+						<td>Senha:</td>
+						<td><input type="password" id="senha" name="senha" value="${user.senha}"></td>
 						<td>Bairro:</td>
-						<td><input type="text" id="bairro" name="bairro" value="${user.bairro}"></td>
+						<td><input type="text" id="bairro" name="bairro" value="${user.bairro}"></td>						
 					</tr>
 					<tr>
+						<td>Nome:</td>
+						<td><input type="text" id="nome" name="nome" value="${user.nome}"></td>
 						<td>Cidade:</td>
-						<td><input type="text" id="cidade" name="cidade" value="${user.cidade}"></td>
+						<td><input type="text" id="cidade" name="cidade" value="${user.cidade}"></td>						
 					</tr>
 					<tr>
+						<td>Fone:</td>
+						<td><input type="text" id="telefone" name="telefone" value="${user.telefone}"></td>
 						<td>Estado:</td>
-						<td><input type="text" id="estado" name="estado" value="${user.estado}"></td>
+						<td><input type="text" id="estado" name="estado" value="${user.estado}"></td>						
 					</tr>
 					<tr>
+						<td></td>
+						<td></td>	
 						<td>IBGE:</td>
-						<td><input type="text" id="ibge" name="ibge" value="${user.ibge}"></td>
+						<td><input type="text" id="ibge" name="ibge" value="${user.ibge}"></td>											
+					</tr>
+					<tr>
 					</tr>
 					<tr>
 						<td></td>
