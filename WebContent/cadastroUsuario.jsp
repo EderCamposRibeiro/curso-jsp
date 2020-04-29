@@ -93,6 +93,7 @@
 					<th scope="col">IBGE</th>
 					<th scope="col">Excluir</th>
 					<th scope="col">Editar</th>
+					<th scope="col">Telefones</th>
 
 				</tr>
 			</thead>
@@ -136,7 +137,12 @@
 							</a></td>
 						<td data-title="Editar"><a href="salvarUsuario?acao=editar&user=${user.id}"> <img
 									src="resources/img/editar.png" width="20px" height="20px" title="Editar"
-									alt="Editar"></a></td>
+									alt="Editar">
+							</a></td>
+						<td data-title="Telefones"><a href="salvarTelefones?user=${user.id}"> <img
+									src="resources/img/telefone.png" width="20px" height="20px" title="Telefones"
+									alt="Telefones">
+							</a></td>									
 					</tr>
 				</c:forEach>
 			</tbody>
