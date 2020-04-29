@@ -139,7 +139,7 @@
 									src="resources/img/editar.png" width="20px" height="20px" title="Editar"
 									alt="Editar">
 							</a></td>
-						<td data-title="Telefones"><a href="salvarTelefones?user=${user.id}"> <img
+						<td data-title="Telefones"><a href="salvarTelefones?acao=addFone&user=${user.id}"> <img
 									src="resources/img/telefone.png" width="20px" height="20px" title="Telefones"
 									alt="Telefones">
 							</a></td>									
