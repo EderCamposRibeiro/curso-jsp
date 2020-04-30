@@ -29,37 +29,37 @@
 						<td><input type="text" readonly="readonly" id="id" name="id" value="${user.id}"
 								class="field-long"></td>
 						<td>Cep:</td>
-						<td><input type="text" id="cep" name="cep" onblur="consultaCep();" value="${user.cep}"></td>
+						<td><input type="text" id="cep" name="cep" onblur="consultaCep();" value="${user.cep}" placeholder="Digite o Cep"></td>
 					</tr>
 					<tr>
 						<td>Login:</td>
-						<td><input type="text" id="login" name="login" value="${user.login}"></td>
+						<td><input type="text" id="login" name="login" value="${user.login}" placeholder="Nome para Login"></td>
 						<td>Rua:</td>
-						<td><input type="text" id="rua" name="rua" value="${user.rua}"></td>						
+						<td><input type="text" id="rua" name="rua" value="${user.rua}" placeholder="Rua ou conjunto"></td>						
 					</tr>
 					<tr>
 						<td>Senha:</td>
-						<td><input type="password" id="senha" name="senha" value="${user.senha}"></td>
+						<td><input type="password" id="senha" name="senha" value="${user.senha}" placeholder="Crie aqui a senha"></td>
 						<td>Bairro:</td>
-						<td><input type="text" id="bairro" name="bairro" value="${user.bairro}"></td>						
+						<td><input type="text" id="bairro" name="bairro" value="${user.bairro}" placeholder="Bairro/Região administrativa no (DF)"></td>						
 					</tr>
 					<tr>
 						<td>Nome:</td>
-						<td><input type="text" id="nome" name="nome" value="${user.nome}"></td>
+						<td><input type="text" id="nome" name="nome" value="${user.nome}" placeholder="Informe o nome do usuário"></td>
 						<td>Cidade:</td>
-						<td><input type="text" id="cidade" name="cidade" value="${user.cidade}"></td>						
+						<td><input type="text" id="cidade" name="cidade" value="${user.cidade}" placeholder="Digite a cidade"></td>						
 					</tr>
 					<tr>
 						<td>Fone:</td>
-						<td><input type="text" id="telefone" name="telefone" value="${user.telefone}"></td>
+						<td><input type="text" id="telefone" name="telefone" value="${user.telefone}" placeholder="(00)0 0000 0000"></td>
 						<td>Estado:</td>
-						<td><input type="text" id="estado" name="estado" value="${user.estado}"></td>						
+						<td><input type="text" id="estado" name="estado" value="${user.estado}" placeholder="Digite a UF"></td>						
 					</tr>
 					<tr>
 						<td></td>
 						<td></td>	
 						<td>IBGE:</td>
-						<td><input type="text" id="ibge" name="ibge" value="${user.ibge}"></td>											
+						<td><input type="text" id="ibge" name="ibge" value="${user.ibge}" placeholder="Numero de registro no IBGE"></td>											
 					</tr>
 					<tr>
 					</tr>
