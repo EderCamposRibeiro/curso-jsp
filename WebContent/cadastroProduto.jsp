@@ -29,17 +29,17 @@
 					<tr>
 						<td>Nome:</td>
 						<td><input type="text" id="nome" name="nome"
-							value="${product.nome}"></td>
+							value="${product.nome}" placeholder="Digite o nome do produto"></td>
 					</tr>
 					<tr>
 						<td>Quantidade:</td>
 						<td><input type="text" id="quantidade" name="quantidade"
-							value="${product.quantidade}"></td>
+							value="${product.quantidade}" placeholder="Digite a quantidade"></td>
 					</tr>
 					<tr>
 						<td>Valor R$:</td>
 						<td><input type="text" id="valor" name="valor" 
-							value="${product.valor}"></td>
+							value="${product.valor}" placeholder="Valor do produto em Reais"></td>
 					</tr>		
 					<tr>
 						<td></td>
